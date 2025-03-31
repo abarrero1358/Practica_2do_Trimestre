@@ -1,44 +1,72 @@
+
 package biblioteca;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase que representa una biblioteca, la cual almacena una colección de libros.
+ *
+ * @author Andrés Felipe Barrero Bustos
+ */
 public class Biblioteca {
 
-    // TODO: Documentar estos atributos
+    /**
+     * Lista de libros almacenados en la biblioteca.
+     */
     private final List<Libro> libros;
 
-    // TODO: Documentar este método
+    /**
+     * Constructor sin parámetros que inicializa la lista de libros.
+     */
     public Biblioteca() {
         libros = new ArrayList<>();
     }
 
-    // TODO: Documentar este método.
-    //  Test: NO HAY QUE TESTEAR ESTE METODO
+    /**
+     * Constructor que inicializa la biblioteca con una lista de libros proporcionada.
+     *
+     * @param libros Lista de libros inicial a añadir a la biblioteca.
+     */
     public Biblioteca(List<Libro> libros) {
         this.libros = libros;
     }
 
-    // TODO: Testear este metodo.
-    //  Test: Comprobar si se ha agregado
+    /**
+     * Añade un libro a la biblioteca.
+     *
+     * @param libro Libro a añadir.
+     * @return {@code true} si el libro se añadió correctamente, {@code false} en caso contrario.
+     */
     public boolean agregarLibro(Libro libro) {
         return libros.add(libro);
     }
 
-    // TODO: Testear este metodo.
-    //  Test: comprobar si se ha eliminado
+    /**
+     * Borra un libro de la biblioteca.
+     *
+     * @param libro Libro a borrar.
+     * @return {@code true} si el libro se borró correctamente, {@code false} en caso contrario.
+     */
     public boolean eliminarLibro(Libro libro) {
         return libros.remove(libro);
     }
 
-    // TODO: Documentar este método
+    /**
+     * Obtiene la lista de libros almacenados en la biblioteca.
+     *
+     * @return Lista de libros en la biblioteca.
+     */
     public List<Libro> getLibros() {
         return libros;
     }
 
-    // TODO: Documentar este método.
-    //  Test 01: buscar libro existente y comprobar que lo localiza.
-    //  Test 02: buscar libro NO existente y comprobar que no lo localiza.
+    /**
+     * Busca un libro en la biblioteca por su título.
+     *
+     * @param titulo Título del libro a buscar.
+     * @return El libro encontrado o {@code null} si no existe.
+     */
     public Libro encuentraLibroPorTitulo(String titulo) {
         for (Libro libro : libros) {
             if (libro.getTitulo().equals(titulo)) {
@@ -48,12 +76,15 @@ public class Biblioteca {
         return null;
     }
 
-    // TODO: Documentar este metodo.
-    //  No testearlo
-    // Este metodo está obsoleto. Hay que documentarlo como tal.
-    //  Recuerda: las anotaciones @deprecated y @link a la nueva
-    //  versión mejorada encuentraLibrosPorAutor(...)
-    //  En esta ocasión, NO TESTEAREMOS este metodo
+    /**
+     * @deprecated Este método ha sido reemplazado por {@link #encuentraLibrosPorAutor(String)}.
+     *
+     * Busca un libro en la biblioteca por su autor.
+     *
+     * @param autor Nombre del autor.
+     * @return Un libro del autor si se encuentra, {@code null} en caso contrario.
+     */
+    @Deprecated
     public Libro encuentaLibroPorAutor(String autor) {
         for (Libro libro : libros) {
             if (libro.getAutor().equals(autor)) {
@@ -63,19 +94,17 @@ public class Biblioteca {
         return null;
     }
 
-    // TODO: Documentar este metodo
-    // Este metodo sustituye al metodo anterior. Está disponible desde la
-    //  versión 2.0. Hay que documentarlo teniéndolo en cuenta.
-    // TODO: Testear este metodo.
-    //  Test: Comprobar la lista de libros que devuelve para un autor existentes.
-    //  Test: Comprobar la lista de libros que devuelve para un autor No existente
+    /**
+     * Busca todos los libros escritos por un autor en la biblioteca.
+     *
+     * @param autor Nombre del autor cuyos libros se buscan.
+     * @return Lista de libros del autor especificado. Si el autor no tiene libros en la biblioteca, retorna una lista vacía.
+     * @since 2.0
+     */
     public List<Libro> encuentraLibrosPorAutor(String autor) {
-        List<Libro> listaLibros = null;
+        List<Libro> listaLibros = new ArrayList<>();
         for (Libro libro : libros) {
             if (libro.getAutor().equals(autor)) {
-                if (listaLibros == null) {
-                    listaLibros = new ArrayList<>();
-                }
                 listaLibros.add(libro);
             }
         }
